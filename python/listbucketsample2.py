@@ -11,7 +11,7 @@ client = s3.meta.client
 # for obj in s3.Bucket('bucket-dhika').objects.all():
 # 	print(obj.key)
 
-for o in s3.Bucket('bucket-sample2').object_versions.all():
+for o in s3.Bucket('bucket-sample2').objects.all():
     print("Key: " + o.key)
     print("Size: " + str(o.size) + " Byte")
     print("Time: " + str(o.last_modified))

@@ -1,5 +1,6 @@
 <?php
-include("connect.php");
+// include("connect.php");
+include("{{ url_for('connect')}}");
 ?>
 
 <!DOCTYPE html>
@@ -7,14 +8,15 @@ include("connect.php");
     <head>
         <title>Lintasarta - Login</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="icon" href="https://www.lintasarta.net/wp-content/themes/lintasarta-theme/assets/img/xfavicon.png.pagespeed.ic.EF0N1Nw6py.png">
         
     </head>
     <body>
         <section class="row justify-content-center">
             <div id="frm">
-            <form action="" method="POST">
+            <!-- <form action="" method="POST"> -->
                 <a href="https://www.lintasarta.net/en/">
-                    <img class="mt-5 mb-5" src="images/lintasartalogo.png" alt="" height="170" width="375">
+                    <img class="mt-5 mb-5" src="{{ url_for('static',filename="lintasartalogo.png")}}" alt="" height="170" width="375">
                 </a>
                     <div>
                     <h2 class="h3 mb-3 font-weight-normal">Please sign in</h2>
@@ -29,10 +31,11 @@ include("connect.php");
                             <input type="checkbox" value="remember-me"> Remember me
                         </label>
                     </div>
-                <a href="homr.php">    
+                <a href="{{ url_for('home')}}">    
+                <!-- <a href="home.php"> -->
                     <button class="btn btn-primary btn-block" type="submit" name="submit">Sign in</button>
                 </a>
-            </form>
+            <!-- </form> -->
             </div>
         </section>
         <span><?php echo $error; ?></span>

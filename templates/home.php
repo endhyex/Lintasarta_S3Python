@@ -1,17 +1,3 @@
-<?php 
-  // session_start(); 
-
-  // if (!isset($_SESSION['username'])) {
-  // $_SESSION['msg'] = "You must log in first";
-  // header('location: login.php');
-  // }
-  // if (isset($_GET['logout'])) {
-  // 	session_destroy();
-  // 	unset($_SESSION['username']);
-  // 	header("location: login.php");
-  // }
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -36,168 +22,189 @@
                     <a class="nav-link" href="#">Documentation</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Bucket
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url_for('bucketsample1')}}">bucket-sample1</a>
-                    <a class="dropdown-item" href="{{ url_for('bucketsample2')}}">bucket-sample2</a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ url_for('listbucket')}}">List Bucket</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalCreateBucket">Create Bucket</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalDeleteBucket">Delete Bucket</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    File
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalListFile">List File</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalOpenFile">Open File</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalUploadFile">Upload File</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalDeleteFile">Delete File</a>
                   </div>
                 </li>
               </ul>
-              <a href="logout.php">
+              <a href="{{ url_for('index')}}">
                 <button type="button" class="btn btn-danger">Sign out</button>
               </a>
             </div>
         </nav>
 
-        <div style="text-align: center;" class="mt-5">
- 
-        <img type="image" alt="" src="images/lintasartalogo.png"/><br><br><br>
-        <div style="text-align: center;" class="mt-5">
-        <img type="image" alt="" width="280px" src="images/netapp-logo.png"/>
-        </div>
+        <div class="container">
+          <div style="text-align: center;" class="mt-5">
+            <div style="text-align: center;" class="mt-5">
+              <img type="image" alt="" width="450px" src="{{ url_for('static',filename="lintasartalogo.png")}}"/>
+            </div>
+          </div>
         </div>
 
-            <!-- <div class="modal fade" id="modalUpload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="modalCreateBucket" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="modalUploadTitle">Upload</h5>
+                    <h5 class="modal-title" id="modalCreateBucketTitle">Create Bucket</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
-                      
-                  <form action="{{ url_for('uploadsample2')}}" method="post" enctype="multipart/form-data">
+                  <div class="modal-body">                      
+                  <form action="{{ url_for('createbucket')}}" method="POST">
+                    <div class="input-group mb-3">
+                      <input type="text" name="newBucket" class="form-control" placeholder="Enter new bucket name.." aria-label="Enter new bucket name.." aria-describedby="basic-addon2">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" value="upload" class="btn btn-primary">Create</button>
+                  </div>
+                  </form>
+                </div>
+              </div>
+        </div>
+
+        <div class="modal fade" id="modalDeleteBucket" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalDeleteBucketTitle">Delete Bucket</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">                      
+                  <form action="{{ url_for('deletebucket')}}" method="POST">
+                    <div class="input-group mb-3">
+                      <input type="text" name="bucketName" class="form-control" placeholder="Enter bucket name.." aria-label="Enter bucket name.." aria-describedby="basic-addon2">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" value="upload" class="btn btn-danger">Delete</button>
+                  </div>
+                  </form>
+                </div>
+              </div>
+        </div>
+
+        <div class="modal fade" id="modalListFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalListFileTitle">List File</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">                      
+                  <form action="{{ url_for('listfile')}}" method="POST">
+                    <div class="input-group mb-3">
+                      <input type="text" name="bucketName" class="form-control" placeholder="Enter bucket name.." aria-label="Enter bucket name.." aria-describedby="basic-addon2">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" value="upload" class="btn btn-primary">View</button>
+                  </div>
+                  </form>
+                </div>
+              </div>
+        </div>
+
+        <div class="modal fade" id="modalOpenFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalOpenFileTitle">Open File</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" style="align:center">
+                    <form action="{{ url_for('openfile')}}" method="POST">
+                    <div class="input-group mb-3">
+                      <input type="text" name="bucketName" class="form-control" placeholder="Enter bucket name.." aria-label="Enter bucket name.." aria-describedby="basic-addon2">
+                      <input type="text" name="fileName" class="form-control" placeholder="Enter file name.." aria-label="Enter file name.." aria-describedby="basic-addon2">
+                    </div>
+                    
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="download" value="download" class="btn btn-primary">Open</button>
+                  </div>
+                  </form>
+                </div>
+              </div>
+        </div>
+
+        <div class="modal fade" id="modalUploadFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalUploadFileTitle">Upload File</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">                      
+                  <form action="{{ url_for('uploadfile')}}" method="POST" enctype="multipart/form-data">
                     <div class="input-group">
+                        <input type="text" name="bucketName" class="form-control" placeholder="Enter bucket name.." aria-label="Enter bucket name.." aria-describedby="basic-addon2">
                         <input type="file" name="file" class="btn btn-light"/>
                         </span>
                     </div>
-
-                    <hr align="center">
-
-                    <div class="btn-group mx-auto" role="group" aria-label="Button group with nested dropdown">
-                          
-                          <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle mr-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              User
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                              <a class="dropdown-item" href="#">User_1</a>
-                              <a class="dropdown-item" href="#">User_2</a>
-                            </div>
-                          </div>
-
-                          <div class="btn-group" role="group">
-                            <button id="btnGroupDrop2" type="button" class="btn btn-light dropdown-toggle mr-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Bucket
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
-                              <a class="dropdown-item" href="#">Bucket_1</a>
-                              <a class="dropdown-item" href="#">Bucket_2</a>
-                            </div>
-
-                            
-                          </div>
-                        
-                          <div class="btn-group" role="group">
-                            <button id="btnGroupDrop3" type="button" class="btn btn-light dropdown-toggle mr-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Region
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop3">
-                              <a class="dropdown-item" href="#">ID_TBS</a>
-                              <a class="dropdown-item" href="#">ID_TechnoPark</a>
-                            </div>
-                          </div>
-                        </div>
-
                   </div>
-                  
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="upload" value="upload" class="btn btn-primary">Upload</button>
+                    <button type="submit" value="upload" class="btn btn-primary">Upload</button>
                   </div>
                   </form>
                 </div>
               </div>
-            </div>
+        </div>
 
-            <div class="modal fade" id="modalLocalUpload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="modalDeleteFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="modalUploadTitle">Local Upload</h5>
+                    <h5 class="modal-title" id="modalDeleteFileTitle">Delete File</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
-                      
-                  <form action="uploadlokal.php" method="post" enctype="multipart/form-data">
-                    <div class="input-group">
-                        <input type="file" name="berkas" class="btn btn-light"/>
-                        </span>
+                  <div class="modal-body">                      
+                  <form action="{{ url_for('deletefile')}}" method="POST">
+                    <div class="input-group mb-3">
+                      <input type="text" name="bucketName" class="form-control" placeholder="Enter bucket name.." aria-label="Enter bucket name.." aria-describedby="basic-addon2"> 
+                      <input type="text" name="fileName" class="form-control" placeholder="Enter file name.." aria-label="Enter file name.." aria-describedby="basic-addon2">
                     </div>
-
-                    <hr align="center">
-                  
+                  </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="upload" value="upload" class="btn btn-primary">Upload</button>
+                    <button type="submit" value="upload" class="btn btn-danger">Delete</button>
                   </div>
                   </form>
                 </div>
               </div>
-            </div> -->
-
-            <!-- <div class="modal fade" id="modalDownload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="modalDownloadTitle">File</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                      
-                  <?php 
-
-                  $folder = 'file/';
-
-                  if(is_dir($folder)){
-                  } else {
-                      echo 'Bukan Folder';
-                  }
-
-                  if($open = opendir($folder)){
-
-                  }
-
-                  while (($folder = readdir($open)) !== FALSE){
-                      if($folder !== '.' && $folder !== '..'){
-                          echo '<strong>File     : </strong>'
-                          .$folder. '<br>';
-                      }
-                  }
-
-                  closedir($open);
-
-                  ?>
-
-                  <a href="file/" class="text-center" target="_blank"><br>OPEN FOLDER</a>
-
-                  </div>
-                  
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
-                  </form>
-                </div>
-              </div>
-            </div> -->
+        </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
