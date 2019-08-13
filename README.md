@@ -28,8 +28,8 @@ https://www.python.org/downloads/mac-osx/
 AWS CLI (Command Line Interface) digunakan untuk dapat melakukan konfigurasi sehingga dapat mengakses StorageGRID.
 Download AWS CLI:
 -	Windows
-https://s3.amazonaws.com/aws-cli/AWSCLI64PY3.msi	(64 bit)
-https://s3.amazonaws.com/aws-cli/AWSCLI32PY3.msi	(32 bit)
+https://s3.amazonaws.com/aws-cli/AWSCLI64PY3.msi (64 bit)
+https://s3.amazonaws.com/aws-cli/AWSCLI32PY3.msi (32 bit)
 https://s3.amazonaws.com/aws-cli/AWSCLISetup.exe
 
 -	MAC dan Linux
