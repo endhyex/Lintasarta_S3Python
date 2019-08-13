@@ -1,8 +1,3 @@
-<?php
-// include("connect.php");
-include("{{ url_for('connect')}}");
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
