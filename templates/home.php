@@ -19,7 +19,7 @@
                     <a class="nav-link" href="#">   |   </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Documentation</a>
+                    <a class="nav-link" href="https://drive.google.com/open?id=136wllPGrcyCLAaB4Q3D4obTPm4COWqxh" target="_blank">Documentation</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
