@@ -13,7 +13,7 @@ Aplikasi ini merupakan program yang digunakan untuk mengakses StorageGRID dengan
 
 # Accessing StorageGRID S3
 ## Install Python
-	Python digunakan untuk dapat menjalankan program dengan bahasa pemrograman Python yang digunakan pada aplikasi ini. Selain itu installasi Python secara otomatis akan melakukan installasi pip.
+Python digunakan untuk dapat menjalankan program dengan bahasa pemrograman Python yang digunakan pada aplikasi ini. Selain itu installasi Python secara otomatis akan melakukan installasi pip.
 Download Python:
 -	Windows
 https://www.python.org/downloads/windows/
@@ -25,11 +25,11 @@ https://www.python.org/downloads/source/
 https://www.python.org/downloads/mac-osx/
 
 ## Install AWS Command Line Interface
-    AWS CLI (Command Line Interface) digunakan untuk dapat melakukan konfigurasi sehingga dapat mengakses StorageGRID.
+AWS CLI (Command Line Interface) digunakan untuk dapat melakukan konfigurasi sehingga dapat mengakses StorageGRID.
 Download AWS CLI:
 -	Windows
-https://s3.amazonaws.com/aws-cli/AWSCLI64PY3.msi	(64 bit)
-https://s3.amazonaws.com/aws-cli/AWSCLI32PY3.msi	(32 bit)
+https://s3.amazonaws.com/aws-cli/AWSCLI64PY3.msi (64 bit)
+https://s3.amazonaws.com/aws-cli/AWSCLI32PY3.msi (32 bit)
 https://s3.amazonaws.com/aws-cli/AWSCLISetup.exe
 
 -	MAC dan Linux
@@ -38,33 +38,32 @@ $pip install awscli
 ```
 
 ## AWS Configure
-	Konfigurasi AWS digunakan untuk melakukan pengaturan terhadap parameter yang dibutuhkan, diantaranya Access Key ID, Secret Access Key dan Region. Untuk melakukan konfigurasi AWS dapat menggunakan Command Prompt atau Terminal dengan menjalankan command berikut:
+Konfigurasi AWS digunakan untuk melakukan pengaturan terhadap parameter yang dibutuhkan, diantaranya Access Key ID, Secret Access Key dan Region. Untuk melakukan konfigurasi AWS dapat menggunakan Command Prompt atau Terminal dengan menjalankan command berikut:
     ```sh
 	aws configure
     ```
 
 ## Install boto3
-	Boto3 merupakan salah satu library dari bahasa pemrograman Python yang berfungsi untuk menjalankan fungsi S3. Untuk melakukan install boto3 dapat melalui Command Prompt atau Terminal dengan menjalankan command berikut:
+Boto3 merupakan salah satu library dari bahasa pemrograman Python yang berfungsi untuk menjalankan fungsi S3. Untuk melakukan install boto3 dapat melalui Command Prompt atau Terminal dengan menjalankan command berikut:
     ```sh
 	$pip install boto3
     ```
 
 ## Install flask
-	Flask merupakan salah satu library dari bahasa pemrograman Python yang berfungsi sebagai framework untuk dapat mengimplementasikan program Python ke dalam PHP sehingga dapat ditampilkan dalam bentuk Web Application
+Flask merupakan salah satu library dari bahasa pemrograman Python yang berfungsi sebagai framework untuk dapat mengimplementasikan program Python ke dalam PHP sehingga dapat ditampilkan dalam bentuk Web Application
 	```sh
     $ pip install flask
     ```
 
 ## Configure endpoint and profile name
-	Konfigurasi dari endpoint dan profile name digunakan sebagai parameter yang akan dipanggil oleh StorageGRID S3 dengan dimasukkan ke dalam program Python.
+Konfigurasi dari endpoint dan profile name digunakan sebagai parameter yang akan dipanggil oleh StorageGRID S3 dengan dimasukkan ke dalam program Python.
     ```sh
 	session = boto3.session.Session(profile_name='my_profile')
 	endpoint = 'https://s3.mycompany.com:8082'
     ```
 
 ## Start the Web Application
-
-	Program dapat dijalankan pada direktori menggunakan Python dengan menjalankan command berikut:
+Program dapat dijalankan pada direktori menggunakan Python dengan menjalankan command berikut:
     ```sh
 	$python app.py
     ```
